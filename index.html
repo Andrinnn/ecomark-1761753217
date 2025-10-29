@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EcoMark - Sustainable fashion marketplace for Gen Z. Discover eco-friendly clothing brands and make a positive impact on the planet.">
+    <meta name="keywords" content="EcoMark, sustainable fashion, eco-friendly clothing, Gen Z fashion, ethical fashion marketplace">
+    <meta name="author" content="EcoMark">
+    <meta property="og:title" content="EcoMark - Sustainable Fashion Marketplace">
+    <meta property="og:description" content="Discover sustainable fashion brands that align with your values. EcoMark connects Gen Z with eco-friendly clothing options.">
+    <meta property="og:type" content="website">
+    <title>EcoMark - Sustainable Fashion Marketplace for Gen Z</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Custom Properties for consistent theming */
+        :root {
+            --primary-color: #2d5a3d;
+            --secondary-color: #4a7c59;
+            --accent-color: #7cb342;
+            --light-green: #e8f5e8;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+            --background-light: #f8fffe;
+            --border-color: #e1e8e8;
+            --shadow: 0 4px 20px rgba(45, 90, 61, 0.1);
+            --shadow-hover: 0 8px 30px rgba(45, 90, 61, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --border-radius: 12px;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+        }
+
+        h3 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        /* Header and Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .header-scrolled {
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo i {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 3px 0;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--light-green) 0%, var(--background-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(45,90,61,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-100px) translateY(-100px) rotate(0deg); }
+            100% { transform: translateX(100px) translateY(100px) rotate(360deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: slideInUp 1s ease-out forwards;
+        }
+
+        .hero-text h1 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text .highlight {
+            color: var(--accent-color);
+            position: relative;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary-color);
+            padding: 1rem 2rem;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--text-light);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 1s ease-out 0.5s forwards;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            background: var(--accent-color);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: var(--text-light);
+            box-shadow: var(--shadow-hover);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: var(--transition);
+        }
+
+        .hero-image:hover {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .hero-image:hover::before {
+            animation: shine 1s ease-out;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        /* Statistics Section */
+        .stats {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 4rem 0;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .stat-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: var(--background-light);
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-features {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .about-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .about-features i {
+            color: var(--accent-color);
+            margin-right: 1rem;
+            width: 20px;
+        }
+
+        .about-visual {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image {
+            width: 100%;
+            max-width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: var(--text-light);
+            box-shadow: var(--shadow-hover);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: var(--light-green);
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-error {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error textarea,
+        .form-group.error select {
+            border-color: #e74c3c;
+        }
+
+        .form-group.error .form-error {
+            display: block;
+        }
+
+        .form-success {
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--text-light);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-image {
+                height: 300px;
+                font-size: 4rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .about-visual {
+                order: -1;
+            }
+
+            .about-image {
+                height: 300px;
+                font-size: 4rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Hover animations for interactive elements */
+        .interactive {
+            transition: var(--transition);
+        }
+
+        .interactive:hover {
+            transform: scale(1.05);
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+
+        /* Focus styles for accessibility */
+        *:focus {
+            outline: 2px solid var(--accent-color);
+            outline-offset: 2px;
+        }
+
+        .btn-primary:focus,
+        .btn-secondary:focus,
+        .cta-button:focus {
+            outline-color: var(--text-light);
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            :root {
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with navigation -->
+    <header id="header" role="banner">
+        <nav role="navigation" aria-label="Main navigation">
+            <a href="#" class="logo" aria-label="EcoMark Homepage">
+                <i class="fas fa-leaf" aria-hidden="true"></i>
+                EcoMark
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#shop" class="cta-button">Shop Now</a></li>
+            </ul>
+            <div class="mobile-menu" aria-label="Mobile menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section id="home" class="hero" role="banner">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>
+                        Welcome to <span class="highlight">EcoMark</span>
+                        <br>Sustainable Fashion for Gen Z
+                    </h1>
+                    <p>
+                        Discover eco-friendly fashion brands that align with your values. 
+                        EcoMark connects conscious consumers with sustainable clothing options 
+                        that don't compromise on style or ethics.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#shop" class="btn-primary" role="button">
+                            <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                            Start Shopping
+                        </a>
+                        <a href="#features" class="btn-secondary" role="button">
+                            <i class="fas fa-play" aria-hidden="true"></i>
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-image" role="img" aria-label="Sustainable fashion illustration">
+                        <i class="fas fa-tshirt" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="stats" role="region" aria-labelledby="stats-heading">
+            <div class="stats-container">
+                <div class="stat-item" data-animation="counter" data-target="500">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Eco Brands</span>
+                </div>
+                <div class="stat-item" data-animation="counter" data-target="10000">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+                <div class="stat-item" data-animation="counter" data-target="75">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">CO2 Reduction %</span>
+                </div>
+                <div class="stat-item" data-animation="counter" data-target="24">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">Countries</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features" role="region" aria-labelledby="features-heading">
+            <div class="features-container">
+                <div class="section-header">
+                    <h2 id="features-heading">Why Choose EcoMark?</h2>
+                    <p>
+                        EcoMark is more than just a marketplace - it's a movement towards 
+                        sustainable fashion that empowers Gen Z to make a positive impact.
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card" data-animation="slideInUp">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf" aria-hidden="true"></i>
+                        </div>
+                        <h3>100% Sustainable</h3>
+                        <p>
+                            Every brand on EcoMark is carefully vetted for their commitment 
+                            to sustainable practices, from materials to manufacturing.
+                        </p>
+                    </div>
+                    <div class="feature-card" data-animation="slideInUp">
+                        <div class="feature-icon">
+                            <i class="fas fa-users" aria-hidden="true"></i>
+                        </div>
+                        <h3>Gen Z Focused</h3>
+                        <p>
+                            Curated specifically for Gen Z tastes and values, featuring 
+                            trendy styles that don't compromise on ethics.
+                        </p>
+                    </div>
+                    <div class="feature-card" data-animation="slideInUp">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        </div>
+                        <h3>Quality Assured</h3>
+                        <p>
+                            All products undergo strict quality checks to ensure you get 
+                            durable, beautiful clothing that lasts.
+                        </p>
+                    </div>
+                    <div class="feature-card" data-animation="slideInUp">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast" aria-hidden="true"></i>
+                        </div>
+                        <h3>Fast & Green Delivery</h3>
+                        <p>
+                            Carbon-neutral shipping options that get your orders to you 
+                            quickly while minimizing environmental impact.
+                        </p>
+                    </div>
+                    <div class="feature-card" data-animation="slideInUp">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt" aria-hidden="true"></i>
+                        </div>
+                        <h3>Mobile-First Experience</h3>
+                        <p>
+                            Seamless shopping experience optimized for mobile devices, 
+                            perfect for the always-connected Gen Z lifestyle.
+                        </p>
+                    </div>
+                    <div class="feature-card" data-animation="slideInUp">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart" aria-hidden="true"></i>
+                        </div>
+                        <h3>Community Driven</h3>
+                        <p>
+                            Join a community of like-minded individuals passionate about 
+                            sustainable fashion and making a difference.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about" role="region" aria-labelledby="about-heading">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2 id="about-heading">About EcoMark</h2>
+                    <p>
+                        EcoMark was founded with a simple mission: to make sustainable fashion 
+                        accessible, affordable, and appealing to Gen Z. We believe that fashion 
+                        should be a force for good, not just good looks.
+                    </p>
+                    <p>
+                        Our platform connects conscious consumers with verified eco-friendly 
+                        brands, making it easier than ever to shop sustainably without 
+                        compromising on style or budget.
+                    </p>
+                    <ul class="about-features">
+                        <li>
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            Rigorous brand vetting process
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            Transparent sustainability metrics
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            Community reviews and ratings
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            Educational content and resources
+                        </li>
+                    </ul>
+                    <a href="#contact" class="btn-primary" role="button">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        Get in Touch
+                    </a>
+                </div>
+                <div class="about-visual">
+                    <div class="about-image" role="img" aria-label="About EcoMark illustration">
+                        <i class="fas fa-globe-americas" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact" role="region" aria-labelledby="contact-heading">
+            <div class="contact-container">
+                <div class="section-header">
+                    <h2 id="contact-heading">Get in Touch with EcoMark</h2>
+                    <p>
+                        Have questions about sustainable fashion or want to partner with us? 
+                        We'd love to hear from you!
+                    </p>
+                </div>
+                <form class="contact-form" id="contactForm" novalidate>
+                    <div class="form-success" id="formSuccess">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        Thank you for contacting EcoMark! We'll get back to you soon.
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            aria-describedby="nameError"
+                            autocomplete="name"
+                        >
+                        <div class="form-error" id="nameError">Please enter your full name</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            aria-describedby="emailError"
+                            autocomplete="email"
+                        >
+                        <div class="form-error" id="emailError">Please enter a valid email address</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" aria-describedby="subjectError">
+                            <option value="">Choose a topic</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="partnership">Brand Partnership</option>
+                            <option value="support">Customer Support</option>
+                            <option value="feedback">Feedback</option>
+                        </select>
+                        <div class="form-error" id="subjectError">Please select a subject</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            required 
+                            aria-describedby="messageError"
+                            placeholder="Tell us how we can help you..."
+                        ></textarea>
+                        <div class="form-error" id="messageError">Please enter your message</div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>EcoMark</h3>
+                <p>
+                    Your trusted sustainable fashion marketplace, connecting Gen Z 
+                    with eco-friendly brands worldwide.
+                </p>
+                <div class="social-links">
+                    <a href="#" aria-label="Follow EcoMark on Facebook">
+                        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" aria-label="Follow EcoMark on Instagram">
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" aria-label="Follow EcoMark on Twitter">
+                        <i class="fab fa-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="#" aria-label="Follow EcoMark on TikTok">
+                        <i class="fab fa-tiktok" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#shop">Shop</a>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#">Help Center</a>
+                <a href="#">Shipping Info</a>
+                <a href="#">Returns</a>
+                <a href="#">Size Guide</a>
+                <a href="#">FAQs</a>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Sustainability</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 EcoMark. All rights reserved. Sustainable fashion for a better tomorrow.</p>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    </button>
+
+    <script>
+        // JavaScript for interactive features and animations
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Header scroll effect
+            const header = document.getElementById('header');
+            const backToTop = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.classList.add('header-scrolled');
+                    backToTop.classList.add('show');
+                } else {
+                    header.classList.remove('header-scrolled');
+                    backToTop.classList.remove('show');
+                }
+            });
+
+            // Back to top functionality
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = target.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        
+                        // Counter animation for stats
+                        if (entry.target.hasAttribute('data-animation') && 
+                            entry.target.getAttribute('data-animation') === 'counter') {
+                            animateCounter(entry.target);
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            document.querySelectorAll('.stat-item, .feature-card').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Counter animation function
+            function animateCounter(element) {
+                const target = parseInt(element.getAttribute('data-target'));
+                const numberElement = element.querySelector('.stat-number');
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        numberElement.textContent = target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        numberElement.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 16);
+            }
+
+            // Contact form handling
+            const contactForm = document.getElementById('contactForm');
+            const formSuccess = document.getElementById('formSuccess');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Reset previous errors
+                document.querySelectorAll('.form-group').forEach(group => {
+                    group.classList.remove('error');
+                });
+                formSuccess.style.display = 'none';
+
+                // Validation
+                let isValid = true;
+                const formData = new FormData(contactForm);
+
+                // Name validation
+                const name = formData.get('name').trim();
+                if (name.length < 2) {
+                    showError('name', 'Please enter your full name (at least 2 characters)');
+                    isValid = false;
+                }
+
+                // Email validation
+                const email = formData.get('email').trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    showError('email', 'Please enter a valid email address');
+                    isValid = false;
+                }
+
+                // Message validation
+                const message = formData.get('message').trim();
+                if (message.length < 10) {
+                    showError('message', 'Please enter a message (at least 10 characters)');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // Simulate form submission
+                    const submitButton = contactForm.querySelector('button[type="submit"]');
+                    const originalText = submitButton.innerHTML;
+                    
+                    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending...';
+                    submitButton.disabled = true;
+
+                    setTimeout(() => {
+                        formSuccess.style.display = 'block';
+                        contactForm.reset();
+                        submitButton.innerHTML = originalText;
+                        submitButton.disabled = false;
+                        
+                        // Scroll to success message
+                        formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 1500);
+                }
+            });
+
+            function showError(fieldName, message) {
+                const field = document.getElementById(fieldName);
+                const formGroup = field.closest('.form-group');
+                const errorElement = document.getElementById(fieldName + 'Error');
+                
+                formGroup.classList.add('error');
+                errorElement.textContent = message;
+                
+                // Focus on first error field
+                if (!document.querySelector('.form-group.error input:focus, .form-group.error textarea:focus')) {
+                    field.focus();
+                }
+            }
+
+            // Real-time form validation
+            contactForm.querySelectorAll('input, textarea, select').forEach(field => {
+                field.addEventListener('blur', function() {
+                    validateField(this);
+                });
+
+                field.addEventListener('input', function() {
+                    if (this.closest('.form-group').classList.contains('error')) {
+                        validateField(this);
+                    }
+                });
+            });
+
+            function validateField(field) {
+                const formGroup = field.closest('.form-group');
+                const fieldName = field.name;
+                const value = field.value.trim();
+                
+                formGroup.classList.remove('error');
+
+                switch (fieldName) {
+                    case 'name':
+                        if (value.length < 2) {
+                            showError(fieldName, 'Please enter your full name (at least 2 characters)');
+                        }
+                        break;
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (value && !emailRegex.test(value)) {
+                            showError(fieldName, 'Please enter a valid email address');
+                        }
+                        break;
+                    case 'message':
+                        if (value.length > 0 && value.length < 10) {
+                            showError(fieldName, 'Please enter a message (at least 10 characters)');
+                        }
+                        break;
+                }
+            }
+
+            // Mobile menu functionality (placeholder for future implementation)
+            const mobileMenu = document.querySelector('.mobile-menu');
+            mobileMenu.addEventListener('click', function() {
+                // This would typically toggle a mobile navigation menu
+                console.log('Mobile menu clicked - implement mobile navigation');
+            });
+
+            // Add loading animation to page elements
+            const elementsToAnimate = document.querySelectorAll('section');
+            elementsToAnimate.forEach((element, index) => {
+                element.style.animationDelay = `${index * 0.1}s`;
+                element.classList.add('loading');
+            });
+
+            // Keyboard navigation support
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    // Close any open modals or menus
+                    document.activeElement.blur();
+                }
+            });
+
+            // Prefetch important resources
+            const linkPrefetch = document.createElement('link');
+            linkPrefetch.rel = 'prefetch';
+            linkPrefetch.href = '#shop';
+            document.head.appendChild(linkPrefetch);
+
+            // Performance optimization: Lazy load background images
+            const lazyBackgrounds = document.querySelectorAll('[data-bg]');
+            const bgObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bg = entry.target.getAttribute('data-bg');
+                        entry.target.style.backgroundImage = `url(${bg})`;
+                        entry.target.removeAttribute('data-bg');
+                        bgObserver.unobserve(entry.target);
+                    }
+                });
+            });
+
+            lazyBackgrounds.forEach(bg => bgObserver.observe(bg));
+
+            // Add focus indicators for better accessibility
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-navigation');
+                }
+            });
+
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('keyboard-navigation');
+            });
+
+            // Console message for developers
+            console.log('%c🌿 Welcome to EcoMark! 🌿', 'color: #2d5a3d; font-size: 20px; font-weight: bold;');
+            console.log('%cSustainable fashion marketplace for Gen Z', 'color: #4a7c59; font-size: 14px;');
+            console.log('%cInterested in joining our mission? Contact us!', 'color: #7cb342; font-size: 12px;');
+        });
+
+        // Service Worker registration for PWA capabilities
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Service worker would be implemented for production
+                console.log('Service worker support detected - implement for production');
+            });
+        }
+
+        // Error handling for better user experience
+        window.addEventListener('error', function(e) {
+            console.error('EcoMark Error:', e.error);
+            // In production, this would send errors to a logging service
+        });
+
+        // Performance monitoring
+        window.addEventListener('load', function() {
+            if ('performance' in window) {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                console.log(`EcoMark page loaded in ${loadTime}ms`);
+            }
+        });
+    </script>
+</body>
+</html>
